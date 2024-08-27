@@ -19,6 +19,8 @@
             font-size: 5em;
             text-shadow: 5px 5px #00ff00;
             animation: rotate 10s infinite linear;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         @keyframes rotate {
@@ -38,6 +40,8 @@
             margin: 0 auto;
             background: url('https://cdn.pixabay.com/photo/2017/01/31/14/51/trash-2022428_1280.png') no-repeat center center/contain;
             animation: bounce 2s infinite;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes bounce {
@@ -46,22 +50,26 @@
         }
 
         .cat-image {
-            width: 300px;
-            height: 300px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 10px solid #00ff00;
             box-shadow: 0 0 20px #ff00ff;
-            animation: spin 5s infinite alternate ease-in-out;
-            margin-top: 20px;
+            position: absolute;
+            top: 50px;
+            left: calc(50% - 75px); /* Centers the cat image */
+            animation: jumpInAndOut 4s infinite;
+            z-index: 1;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
+        @keyframes jumpInAndOut {
+            0%, 100% { top: 50px; }
+            25%, 75% { top: 150px; opacity: 1; }
+            50% { top: 150px; opacity: 0; }
         }
 
         .button {
-            margin-top: 20px;
+            margin-top: 300px;
             padding: 20px;
             background-color: #00ff00;
             border: none;
@@ -82,6 +90,7 @@
             background-clip: text;
             color: transparent;
             animation: text-flicker 1s infinite;
+            margin-top: 20px;
         }
 
         @keyframes text-flicker {
@@ -116,7 +125,7 @@
 
     <div id="meowText" class="meow" style="display: none;">MEOW!</div>
 
-    <audio id="meowSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+    <audio id="meowSound" src="https://www.myinstants.com/media/sounds/meow.mp3" preload="auto"></audio>
 
     <script>
         function playMeow() {
